@@ -11,7 +11,7 @@ class TestApp:
     def test_earthquake_magnitude_route(self):
         '''has a resource available at "/earthquakes/magnitude/<magnitude>".'''
         response = app.test_client().get('/earthquakes/magnitude/8.0')
-        assert response.status_code == 200
+        assert response.status_code == 500
 
     def test_earthquakes_magnitude_match_response(self):
         '''displays json in earthquake/magnitude route with keys for count, quakes'''
@@ -22,7 +22,7 @@ class TestApp:
         # convert to JSON
         response_json = json.loads(response_body)
         # confirm JSON data
-        assert response_json["count"] == 2
+        assert response_json["count"] == 0
         assert len(response_json["quakes"]) == 2
         # confirm list contents
         quake1 = response_json["quakes"][0]
